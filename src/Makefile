@@ -1,9 +1,16 @@
 
-ray: main.o
-	g++ -o ray main.o
+CPP=g++
+CPPFLAGS=-c -Wall
+SOURCES=main.cc
+HEADERS=vec3.h ray.h
 
-main.o: main.cc
-	g++ -c main.cc
+OBJECTS=$(SOURCES:.cc=.o)
+
+ray: $(OBJECTS) $(SOURCES) $(HEADERS)
+	$(CPP) -o ray main.o
+
+.cc.o:
+	$(CPP) $(CPPFLAGS) $< -o $@
 
 clean:
 	rm -f *.o
