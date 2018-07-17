@@ -12,6 +12,15 @@ ray: $(OBJECTS) $(SOURCES) $(HEADERS)
 .cc.o:
 	$(CPP) $(CPPFLAGS) $< -o $@
 
+depend: .depend
+
+.depend: $(SOURCES)
+	rm -f ./.depend
+	$(CPP) $(CPPFLAGS) -MM $^ > ./.depend;
+
 clean:
 	rm -f *.o
 	rm ray
+	rm ./.depend
+
+-include .depend
