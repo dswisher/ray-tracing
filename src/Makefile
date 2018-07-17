@@ -2,11 +2,10 @@
 CPP=g++
 CPPFLAGS=-c -Wall
 SOURCES=main.cc
-HEADERS=vec3.h ray.h
 
 OBJECTS=$(SOURCES:.cc=.o)
 
-ray: $(OBJECTS) $(SOURCES) $(HEADERS)
+ray: $(OBJECTS) $(SOURCES)
 	$(CPP) -o ray main.o
 
 .cc.o:
