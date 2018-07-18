@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <random>
 #include "camera.h"
 #include "sphere.h"
 #include "hitable_list.h"
@@ -21,6 +22,9 @@ vec3 color(const ray& r, hitable *world)
 
 
 int main() {
+    std::mt19937 chaos(316);    // use a set seed to be deterministic
+    std::uniform_real_distribution<> dist(0.0, 1.0);
+
     int nx = 200;
     int ny = 100;
     int ns = 100;
@@ -38,8 +42,8 @@ int main() {
             vec3 col(0, 0, 0);
             for (int s = 0; s < ns; s++)
             {
-                float u = float(i + drand48()) / float(nx);
-                float v = float(j + drand48()) / float(ny);
+                float u = float(i + dist(chaos)) / float(nx);
+                float v = float(j + dist(chaos)) / float(ny);
 
                 ray r = cam.get_ray(u, v);
                 // vec3 p = r.point_at_parameter(2.0);
