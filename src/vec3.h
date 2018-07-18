@@ -16,8 +16,17 @@ public:
     inline float g() const { return e[1]; }
     inline float b() const { return e[2]; }
 
-    // TODO - operators
+    inline const vec3& operator+() const { return *this; }
+    inline vec3 operator-() const { return vec3(-e[0], -e[1], -e[2]); }
     inline float operator[](int i) const { return e[i]; }
+    inline float& operator[](int i) { return e[i]; }
+
+    inline vec3& operator+=(const vec3 &v);
+    inline vec3& operator-=(const vec3 &v);
+    inline vec3& operator*=(const vec3 &v);
+    inline vec3& operator/=(const vec3 &v);
+    inline vec3& operator*=(const float t);
+    inline vec3& operator/=(const float t);
 
     inline float length() const
     {
@@ -57,6 +66,60 @@ inline vec3 operator*(float t, const vec3 &v)
 inline vec3 operator/(vec3 v, float t)
 {
     return vec3(v.x() / t, v.y() / t, v.z() / t);
+}
+
+
+inline vec3& vec3::operator+=(const vec3 &v)
+{
+    e[0] += v.e[0];
+    e[1] += v.e[1];
+    e[2] += v.e[2];
+    return *this;
+}
+
+
+inline vec3& vec3::operator-=(const vec3 &v)
+{
+    e[0] -= v.e[0];
+    e[1] -= v.e[1];
+    e[2] -= v.e[2];
+    return *this;
+}
+
+
+inline vec3& vec3::operator*=(const vec3 &v)
+{
+    e[0] *= v.e[0];
+    e[1] *= v.e[1];
+    e[2] *= v.e[2];
+    return *this;
+}
+
+
+inline vec3& vec3::operator/=(const vec3 &v)
+{
+    e[0] /= v.e[0];
+    e[1] /= v.e[1];
+    e[2] /= v.e[2];
+    return *this;
+}
+
+
+inline vec3& vec3::operator*=(const float t)
+{
+    e[0] *= t;
+    e[1] *= t;
+    e[2] *= t;
+    return *this;
+}
+
+
+inline vec3& vec3::operator/=(const float t)
+{
+    e[0] /= t;
+    e[1] /= t;
+    e[2] /= t;
+    return *this;
 }
 
 
