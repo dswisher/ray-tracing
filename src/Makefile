@@ -1,12 +1,12 @@
 
 CPP=g++
 CPPFLAGS=-c -Wall
-SOURCES=main.cc
+SOURCES=main.cc chaos.cc
 
 OBJECTS=$(SOURCES:.cc=.o)
 
 ray: $(OBJECTS) $(SOURCES)
-	$(CPP) -o ray main.o
+	$(CPP) -o ray $(OBJECTS)
 
 .cc.o:
 	$(CPP) $(CPPFLAGS) $< -o $@
@@ -19,7 +19,7 @@ depend: .depend
 
 clean:
 	rm -f *.o
-	rm ray
+	rm -f ray
 	rm ./.depend
 
 -include .depend
