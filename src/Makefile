@@ -1,6 +1,6 @@
 
 CPP=g++
-CPPFLAGS=-c -Wall
+CPPFLAGS=-c -Wall -std=c++11
 SOURCES=main.cc chaos.cc
 
 OBJECTS=$(SOURCES:.cc=.o)
